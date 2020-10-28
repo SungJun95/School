@@ -255,6 +255,37 @@ public class MemberDao {
 	} // deleteAll()
 	
 	
+	public int getCountMemberById(String id) {
+		int count = 0;
+		MemberVo memberVo = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		try {
+			con = JdbcUtils.getConnection();
+			
+			sql = "SELECT COUNT(*) FROM member WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt(1);
+			} // if
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtils.close(con, pstmt, rs);
+		}
+		return count;
+	} // getMemberById()
+	
+	
 	public static void main(String[] args) {
 		
 		// MemberDao ∞¥√º ¡ÿ∫Ò

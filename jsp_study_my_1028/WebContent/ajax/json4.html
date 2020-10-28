@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+
+<style>
+
+</style>
+
+</head>
+
+<body>
+
+	<div id="app">
+		<input type="button" value="버튼" id="btn">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>아이디</th><th>이름</th><th>나이</th>
+				</tr>
+ 			</thead>
+ 			<tbody>
+ 				
+ 			</tbody>
+		</table>
+	</div>
+	
+<script src="../js/jquery-3.5.1.js"></script>
+
+	<script>
+	
+		function process(list) {
+			let str = '';
+			for (let item of list) {
+				// 백틱(Backtick `)
+				str += `
+					<tr>
+						<td>${item.id}</td>
+						<td>${item.name}</td>
+						<td>${item.age}</td>
+					</tr>
+				`;
+			} // for
+			
+			$.each(list, function (index, item) {
+				
+				/* str += '<tr>';
+				str += '	<td>' + item.name + '</td>';
+				str += '	<td>' + item.gender + '</td>';
+				str += '	<td>' + item.age + '</td>';
+				str += '</tr>'; */
+				
+				// 백틱(Backtick `) 문법을 사용하면 코드를 깔끔하고 직관적으로 짤수있다.
+				str += `
+					<tr>
+						<td>${item.id}</td>
+						<td>${item.name}</td>
+						<td>${item.age}</td>
+					</tr>
+				`;
+				
+				$('tbody').html(str);
+				
+			});
+		};
+
+		$('#btn').click(function () {
+			$.ajax({
+				url: 'json4.jsp',  // 요청할 페이지 주소
+				success: function (data) {  // 응답
+					console.log(typeof data);
+					console.log(data);
+					
+					process(data);
+				}
+			});
+		});
+
+	</script>
+
+</body>
+
+</html>

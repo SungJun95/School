@@ -9,9 +9,7 @@
 <title>Insert title here</title>
 
 <style>
-	section{
-		border: 1px solid red;
-	}
+
 </style>
 
 </head>
@@ -45,6 +43,15 @@
 				str += '	<td>' + item.gender + '</td>';
 				str += '	<td>' + item.age + '</td>';
 				str += '</tr>';
+				
+				// 백틱(Backtick `) 문법을 사용하면 코드를 깔끔하고 직관적으로 짤수있다.
+				str += `
+					<tr>
+						<td>${item.name}</td>
+						<td>${item.gender}</td>
+						<td>${item.age}</td>
+					</tr>
+				`;
 				
 				$('tbody').html(str);
 				

@@ -45,7 +45,7 @@
 			$.ajax({
 				url: 'xml.jsp',  // 요청할 페이지 주소
 				success: function (data) {  // 응답
-					console.log(typeof data);
+					console.log(typeof data); // 태그문서 DOM , Document Object Model
 					console.log(data);
 					
 					process(data);

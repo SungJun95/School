@@ -27,7 +27,7 @@ if (isPasswdOk) {
 		String realPath = application.getRealPath("/upload"); // 업로드 경로
 		// File 객체 준비
 		File file = new File(realPath, filename);
-		if (file.exists()) { // 해당 경로에 파일이 존재하면
+		if (file.exists()) { // 해당 경로에 파일이 존재하면 null 체크
 			file.delete();   // 파일 삭제하기
 		}
 	}
