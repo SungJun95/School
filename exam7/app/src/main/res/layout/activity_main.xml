@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn7_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_1">
+    </Button>
+
+    <Button
+        android:id="@+id/btnTest7_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="examTest7_1">
+    </Button>
+
+    <Button
+        android:id="@+id/btn7_7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_7">
+    </Button>
+
+    <Button
+        android:id="@+id/btnTest7_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="examTest7_2">
+    </Button>
+
+    <Button
+        android:id="@+id/btn7_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_12">
+    </Button>
+
+    <Button
+        android:id="@+id/btn7_14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_14">
+    </Button>
+
+    <Button
+        android:id="@+id/btn7_18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_18">
+    </Button>
+
+    <Button
+        android:id="@+id/btn7_21"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="exam7_21">
+    </Button>
+
+</LinearLayout>
