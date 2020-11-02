@@ -24,6 +24,7 @@
         <activity android:name=".exam7_14"/>
         <activity android:name=".exam7_18"/>
         <activity android:name=".exam7_21"/>
+        <activity android:name=".examTest7_3"/>
     </application>
 
 </manifest>

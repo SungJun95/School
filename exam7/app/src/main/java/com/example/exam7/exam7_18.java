@@ -1,55 +1,58 @@
 package com.example.exam7;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class exam7_18 extends AppCompatActivity {
 
+    boolean[] checkArray = new boolean[] { false, false, false };
 
-
-    protected void onCreate(Bundle savedInstanceState){
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.exam7_14);
-
-        setTitle("대화상자 만들기");
-
+        setContentView(R.layout.exam7_18);
         final Button button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener(){
+        button1.setOnClickListener(new View.OnClickListener() {
 
-            @Override
             public void onClick(View v) {
 
-                final String[] versionArray = new String[] {"오레오", "파이", "큐"};
-                final boolean[] checkArray = new boolean[] {true , false , false};
+                final String[] versionArray = new String[] { "오레오", "파이", "큐(10)" };
 
                 AlertDialog.Builder dlg = new AlertDialog.Builder(exam7_18.this);
                 dlg.setTitle("좋아하는 버전은?");
                 dlg.setIcon(R.mipmap.ic_launcher);
-                // dlg.setItems(versionArray,
-//                   dlg.setSingleChoiceItems( versionArray , 0 ,
-//                        new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                button1.setText(versionArray[which]);
-//                            }
-//                        });
-                    dlg.setMultiChoiceItems(versionArray, checkArray,
-                            new DialogInterface.OnMultiChoiceClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                    button1.setText(versionArray[which]);
+                dlg.setMultiChoiceItems(versionArray, checkArray,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which, boolean isChecked)
+                            {
+                                String str="";
+                                int cnt=0;
+                                for(int i=0; i<checkArray.length;++i)
+                                {
+                                    if(checkArray[i]) {
+                                        cnt++;
+                                        if(cnt != 1)
+                                            str += ",";
+
+                                        str += versionArray[i];
+                                    }
                                 }
-                            });
+
+                                if(cnt ==0)
+                                    str ="선택없음";
+
+                                button1.setText(str);
+                            }
+                        });
                 dlg.setPositiveButton("닫기", null);
                 dlg.show();
+
             }
         });
-
     }
 }

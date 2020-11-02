@@ -63,4 +63,11 @@
         android:text="exam7_21">
     </Button>
 
+    <Button
+        android:id="@+id/btnTest7_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="examTest7_3">
+    </Button>
+
 </LinearLayout>
