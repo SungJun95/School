@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.exam.vo.MemberVo;
 
@@ -33,8 +35,8 @@ public class MemberDao {
 			con = JdbcUtils.getConnection();
 			
 			String sql = "";
-			sql += "INSERT INTO member (id, passwd, name, age, gender, email, reg_date) ";
-			sql += "VALUES (?, ?, ?, ?, ?, ?, ?) ";
+			sql += "INSERT INTO member (id, passwd, name, age, gender, email, reg_date, address, tel) ";
+			sql += "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getId());
@@ -44,6 +46,8 @@ public class MemberDao {
 			pstmt.setString(5, memberVo.getGender());
 			pstmt.setString(6, memberVo.getEmail());
 			pstmt.setTimestamp(7, memberVo.getRegDate());
+			pstmt.setString(8, memberVo.getAddress());
+			pstmt.setString(9, memberVo.getTel());
 			
 			pstmt.executeUpdate();
 			
@@ -217,7 +221,7 @@ public class MemberDao {
 			
 			String sql = "";
 			sql += "UPDATE member ";
-			sql += "SET name = ?, age = ?, gender = ?, email = ? ";
+			sql += "SET name = ?, age = ?, gender = ?, email = ?, address = ?, tel = ? ";
 			sql += "WHERE id = ? ";
 			
 			pstmt = con.prepareStatement(sql);
@@ -225,7 +229,9 @@ public class MemberDao {
 			pstmt.setInt(2, memberVo.getAge());
 			pstmt.setString(3, memberVo.getGender());
 			pstmt.setString(4, memberVo.getEmail());
-			pstmt.setString(5, memberVo.getId());
+			pstmt.setString(5, memberVo.getAddress());
+			pstmt.setString(6, memberVo.getTel());
+			pstmt.setString(7, memberVo.getId());
 			
 			pstmt.executeUpdate();
 			
@@ -288,13 +294,36 @@ public class MemberDao {
 		// MemberDao 객체 준비
 		MemberDao memberDao = new MemberDao();
 		
-		memberDao.deleteAll();
+		Random random = new Random();
+		
+		memberDao.deleteAll(); // 전체삭제
 		
 		System.out.println("======== insert 테스트 =========");
 		
-		for (int i=0; i<5; i++) {
-			MemberVo memberVo = new MemberVo("aaa"+i, "1234", "홍길동"+i);
+		for (int i=0; i<1000; i++) {
+			MemberVo memberVo = new MemberVo();
+			memberVo.setId("user"+i);
+			memberVo.setPasswd("1234");
+			memberVo.setName("유저"+i);
+			
+			// 나이값의 범위  8세이상 ~ 100세이하
+			int age = random.nextInt(93) + 8; // (0~92)+8 -> (8~100)
+			memberVo.setAge(age);
+			
+			boolean isMale = random.nextBoolean(); // 남성 true 여성 false
+			if (isMale) {
+				memberVo.setGender("남");
+			} else {
+				memberVo.setGender("여");
+			}
+			
+			memberVo.setEmail("user" + i + "@user.com");
+			memberVo.setRegDate(new Timestamp(System.currentTimeMillis()));
+			memberVo.setAddress("부산시");
+			memberVo.setTel("010-1234-5678");
+			
 			memberDao.addMember(memberVo);
+			System.out.println("insert 성공!");
 		}
 		
 		List<MemberVo> list = memberDao.getAllMembers();
@@ -304,7 +333,9 @@ public class MemberDao {
 		
 		System.out.println("======== getMemberById 테스트 =========");
 		
-		MemberVo memberVo = memberDao.getMemberById("aaa0");
+		String testId = "user0";
+		
+		MemberVo memberVo = memberDao.getMemberById(testId);
 		System.out.println(memberVo);
 		
 		System.out.println("======== update 테스트 =========");
@@ -312,14 +343,14 @@ public class MemberDao {
 		memberVo.setName("이순신"); // 수정될 이름값 설정
 		memberDao.update(memberVo);
 		
-		MemberVo getMemberVo = memberDao.getMemberById("aaa0");
+		MemberVo getMemberVo = memberDao.getMemberById(testId);
 		System.out.println(getMemberVo);
 		
 		System.out.println("======== deleteById 테스트 =========");
 		
-		memberDao.deleteById("aaa0");
+		memberDao.deleteById(testId);
 		
-		MemberVo getMemberVo2 = memberDao.getMemberById("aaa0");
+		MemberVo getMemberVo2 = memberDao.getMemberById(testId);
 		System.out.println(getMemberVo2);
 		
 	} // main

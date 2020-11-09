@@ -5,6 +5,8 @@
 <head>
 <%-- head 컨텐트 영역 --%>
 <jsp:include page="/include/headContent.jsp" />
+
+<link href="/css/subpage.css" rel="stylesheet" type="text/css"  media="all">
 </head>
 
 <body>

@@ -2,28 +2,27 @@ package com.exam.vo;
 
 import java.sql.Timestamp;
 
-public class BoardVo {
-	private int num;
-	private String name;
-	private String passwd;
+public class NoticeVo {
+	
+	private int num;    // 게시판 글번호
+	private String id;  // 작성자 ID
 	private String subject;
 	private String content;
 	private int readcount;
 	private Timestamp regDate;
 	private String ip;
-	private String file;
 	private int reRef;  // 그룹번호. 주글번호는 그룹번호가 됨.
 	private int reLev;  // 들여쓰기 레벨
 	private int reSeq;  // 그룹 내에서의 순번
 	
+	public NoticeVo() {
+	}
+	
 	public int getNum() {
 		return num;
 	}
-	public String getName() {
-		return name;
-	}
-	public String getPasswd() {
-		return passwd;
+	public String getId() {
+		return id;
 	}
 	public String getSubject() {
 		return subject;
@@ -40,9 +39,6 @@ public class BoardVo {
 	public String getIp() {
 		return ip;
 	}
-	public String getFile() {
-		return file;
-	}
 	public int getReRef() {
 		return reRef;
 	}
@@ -55,11 +51,8 @@ public class BoardVo {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
@@ -76,9 +69,6 @@ public class BoardVo {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public void setFile(String file) {
-		this.file = file;
-	}
 	public void setReRef(int reRef) {
 		this.reRef = reRef;
 	}
@@ -91,8 +81,9 @@ public class BoardVo {
 	
 	@Override
 	public String toString() {
-		return "BoardVo [num=" + num + ", name=" + name + ", passwd=" + passwd + ", subject=" + subject + ", content="
-				+ content + ", readcount=" + readcount + ", regDate=" + regDate + ", ip=" + ip + ", file=" + file
-				+ ", reRef=" + reRef + ", reLev=" + reLev + ", reSeq=" + reSeq + "]";
+		return "BoardVo [num=" + num + ", id=" + id + ", subject=" + subject + ", content=" + content + ", readcount="
+				+ readcount + ", regDate=" + regDate + ", ip=" + ip + ", reRef=" + reRef + ", reLev=" + reLev
+				+ ", reSeq=" + reSeq + "]";
 	}
+
 }
