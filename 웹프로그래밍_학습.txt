@@ -1,0 +1,227 @@
+서버프로그램 구현
+- 자바 - JSP(모델1) - JSP(모델2, MVC설계) - 프레임워크(스프링)
+      - 안드로이드
+	  
+정적웹프로그램 - HTML,CSS,JavaScript - 클라이언트 측 실행
+동적웹프로그램 - JSP, PHP, ASP, ASP.Net - 서버 측 실행
+
+설치
+1. JDK 설치 - 환경변수 path에 JAVA_HOME 추가
+2. 웹서버(아파치톰캣) 설치
+
+- 웹서버 시작 start
+C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin
+Tomcat9.exe
+Tomcat9w.exe
+
+- 웹서버 접속
+http://localhost:80
+http://127.0.0.1:80
+
+3. 데이터베이스(Oracle, MySQL, MS-SQL 등) 설치
+
+개발툴(이클립스)
+이클립스 설정
+- 웹서버 가져오기
+- 프로젝트 생성
+- 웹서버와 프로젝트 연결
+
+
+jsp_study 동적웹프로젝트 (정적웹+동적웹 모두 실행)
+http://localhost:80/jsp_study/aaa.html
+
+
+
+* MySQL
+
+
+* 데이터베이스 사용자 계정 생성
+  사용자계정명: myid   패스워드: mypwd
+  
+  GRANT ALL PRIVILEGES
+  ON sakila.* TO 'myid'@'localhost'
+  IDENTIFIED BY 'mypwd';
+
+
+  GRANT ALL PRIVILEGES
+  ON sakila.* TO 'myid'@'%'
+  IDENTIFIED BY 'mypwd';
+
+
+* 데이터베이스 선택
+use sakila;
+
+
+-- 사람정보 INSERT
+INSERT INTO actor (first_name, last_name, last_update)
+VALUES ('길동', '홍', now());
+
+-- SELECT문
+SELECT *
+FROM actor
+WHERE first_name = '길동';
+
+-- UPDATE문
+UPDATE actor
+SET last_name = '고'
+WHERE actor_id = 201;
+
+-- DELETE문
+DELETE FROM actor
+WHERE actor_id = 201;
+
+
+
+
+// 자바에서 DB접속정보
+String dbUrl = "jdbc:mysql://localhost:3306/sakila?useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Seoul";
+String dbId = "myid";
+String dbPwd = "mypwd";
+
+
+
+
+
+
+* 데이터베이스 공간(스키마) 생성
+  CREATE DATABASE jspdb;
+  
+* 생성된 데이터베이스 공간 확인
+  show databases;
+  
+* 데이터베이스 jspdb를 사용하는 계정 설정
+  GRANT ALL PRIVILEGES
+  ON jspdb.* TO 'myid'@'localhost'
+  IDENTIFIED BY 'mypwd';
+
+  GRANT ALL PRIVILEGES
+  ON jspdb.* TO 'myid'@'%'
+  IDENTIFIED BY 'mypwd';
+
+* 회원 테이블 생성
+CREATE TABLE member (
+    id VARCHAR(50) PRIMARY KEY,
+	passwd VARCHAR(50) NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	reg_date DATETIME
+);
+
+INSERT INTO member (id, passwd, name, reg_date)
+VALUES ('aaa', '1234', '홍기동', now());
+
+
+테이블 수정
+ALTER TABLE member 
+ADD age INT;
+
+ALTER TABLE member 
+ADD gender VARCHAR(5);
+
+ALTER TABLE member 
+ADD email VARCHAR(30);
+
+ALTER TABLE member 
+ADD address VARCHAR(100);
+
+ALTER TABLE member 
+ADD tel VARCHAR(20);
+
+DESC member;
+
+
+* 게시판 테이블 생성
+CREATE TABLE board (
+	num INT PRIMARY KEY,
+	name VARCHAR(20),
+	passwd VARCHAR(20),
+	subject VARCHAR(50),
+	content VARCHAR(2000),
+	readcount INT,
+	reg_date DATETIME,
+	ip VARCHAR(20),
+	file VARCHAR(50),
+	re_ref INT,
+	re_lev INT,
+	re_seq INT
+);
+
+show tables;
+desc board;
+
+
+SELECT COUNT(*)
+FROM board;
+
+
+SELECT *
+FROM board
+ORDER BY num DESC
+LIMIT 0, 10;  /* 1페이지 요청시 */
+
+SELECT *
+FROM board
+ORDER BY num DESC
+LIMIT 10, 10;  /* 2페이지 요청시 */
+
+SELECT *
+FROM board
+ORDER BY num DESC
+LIMIT 20, 10;  /* 3페이지 요청시 */
+
+
+
+* 답글쓰기
+
+SELECT *
+FROM board
+ORDER BY re_ref DESC, re_seq ASC
+LIMIT ?, ? ;
+
+num   subject           re_ref    re_lev   re_seq
+=====================================================
+ 6     제목3               6         0        0
+ 4     제목2               4         0        0
+ 5       답글2             4         1        1
+ 1     제목1               1         0        0
+ 7       답글!             1         1        1
+ 2       답글1             1         1        1+1 = 2
+ 3         답글1_1         1         2        2+1 = 3
+
+
+
+* funweb 게시판 테이블
+CREATE TABLE notice (
+	num INT PRIMARY KEY AUTO_INCREMENT,
+	id VARCHAR(20),
+	subject VARCHAR(50),
+	content VARCHAR(2000),
+	readcount INT,
+	reg_date DATETIME,
+	ip VARCHAR(20),
+	re_ref INT,
+	re_lev INT,
+	re_seq INT
+);
+
+* funweb 첨부파일 테이블
+CREATE TABLE attach (
+	num        INT PRIMARY KEY AUTO_INCREMENT,
+	filename   VARCHAR(1000),
+	uploadpath VARCHAR(1000),
+	image      VARCHAR(5),
+	no_num     INT
+);
+
+
+
+* 특정 테이블의 AUTO_INCREMENT 컬럼 다음숫자 가져오기
+SELECT AUTO_INCREMENT
+FROM information_schema.tables
+WHERE table_name = 'notice'
+AND table_schema = DATABASE();
+
+
+
+
+
+
