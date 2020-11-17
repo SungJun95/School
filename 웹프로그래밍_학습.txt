@@ -222,6 +222,35 @@ AND table_schema = DATABASE();
 
 
 
+CREATE TABLE USER_INFO_SAMPLE (
+	U_ID VARCHAR(20) PRIMARY KEY,
+    U_NAME VARCHAR(10),
+    U_PHONE VARCHAR(13),
+    U_GRADE INT,
+    WRITE_TIME DATETIME
+    );
+	
+SELECT * FROM user_info_sample;
+
+UPDATE USER_INFO_SAMPLE 
+SET U_NAME = 'test', 
+U_PHONE = '123-4567-7890', 
+U_GRADE = 4
+WHERE U_id = 'test';
+
+UPDATE actor
+SET last_name = '구'
+WHERE actor_id = 201;
+
+
+INSERT INTO user_info_sample (u_id, u_name, u_phone, u_grade, write_time)
+VALUES ('kkh', '김경호', '010-2121-3434', 1 , '2015-10-24 10:12:00');
+
+INSERT INTO user_info_sample (u_id, u_name, u_phone, u_grade, write_time)
+VALUES ('test', '테스형', '010-2121-3434', 1 , '2015-10-24 00:12:00');
+
+
+
 
 
 
