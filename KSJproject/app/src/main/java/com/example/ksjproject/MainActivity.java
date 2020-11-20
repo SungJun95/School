@@ -3,8 +3,10 @@ package com.example.ksjproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -17,8 +19,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        setTheme(android.R.style.Theme_NoTitleBar);
+        setTheme(android.R.style.Theme);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.addTab((tabLayout.newTab().setText("개인회원")));

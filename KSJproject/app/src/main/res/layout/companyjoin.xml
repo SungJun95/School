@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="기업 회원가입"
+                android:gravity="center"
+                android:fontFamily="@font/kotra"
+                android:textSize="20dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ID/Passwd"
+                android:textSize="18dp">
+            </TextView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CJoinEdtId">
+            </EditText>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/CJoinEdtPwd">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PasswdCheck"
+                android:textSize="18dp">
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/CJoinEdtPwdCheck">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CompanyName"
+                android:textSize="18dp">
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CJoinEdtName">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registration Number"
+                android:textSize="18dp">
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CJoinEdtCNumber"
+                android:inputType="number">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="18dp">
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CJoinEdtEmail"
+                android:inputType="textEmailAddress">
+            </EditText>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rep Number"
+                android:textSize="18dp">
+            </TextView>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/CJoinEdtTel"
+                android:inputType="phone">
+            </EditText>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원가입"
+                android:id="@+id/CJoinSubmit"
+                android:layout_gravity="center">
+            </Button>
+
+        </LinearLayout>
+</ScrollView>

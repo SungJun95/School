@@ -250,7 +250,15 @@ INSERT INTO user_info_sample (u_id, u_name, u_phone, u_grade, write_time)
 VALUES ('test', '테스형', '010-2121-3434', 1 , '2015-10-24 00:12:00');
 
 
-
+CREATE TABLE Person (
+	P_ID VARCHAR(20) PRIMARY KEY,
+    P_PWD VARCHAR(10),
+    P_NAME VARCHAR(20),
+    P_BIRTH VARCHAR(20),
+    P_SEX VARCHAR(10),
+    P_EMAIL VARCHAR(20),
+    P_TEL VARCHAR(20)
+);
 
 
 
