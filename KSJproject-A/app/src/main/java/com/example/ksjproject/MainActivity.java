@@ -2,12 +2,8 @@ package com.example.ksjproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Window;
 import android.view.WindowManager;
-
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -15,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     PagerAdapter adapter;
     ViewPager viewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
