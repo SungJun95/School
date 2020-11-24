@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/jobinfo_background">
+
+    <TextView
+        android:id="@+id/jobTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/jobContent"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:layout_gravity="center"
+        android:textColor="#2F4F4F"
+        android:text="test@test@test@test@test@test@test@test@test@test@test@test@test@test@test@test@test@">
+    </TextView>
+
+    <LinearLayout
+        android:layout_gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/jobHash1"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8FBC8F"
+            android:textSize="12dp"
+            android:text="#TEST"
+            android:layout_marginRight="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/jobHash2"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#8FBC8F"
+            android:textSize="12dp"
+            android:text="#TEST">
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

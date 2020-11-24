@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonJoin"/>
+        <activity android:name=".Person.PersonJoin"/>
         <activity android:name=".CompanyJoin"/>
-        <activity android:name=".PersonMain"/>
+        <activity android:name=".Person.PersonMain"/>
     </application>
 
 </manifest>

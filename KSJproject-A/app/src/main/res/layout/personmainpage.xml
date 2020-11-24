@@ -20,21 +20,25 @@
         </EditText>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="검색">
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="검색"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/btnshape"
+            android:id="@+id/PSearchBtn">
         </Button>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon"
-            >
+            android:src="@drawable/icon">
         </ImageView>
+
 
     </LinearLayout>
 
     <ListView
+        android:id="@+id/Plistview"
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

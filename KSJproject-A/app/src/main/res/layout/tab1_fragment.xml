@@ -44,13 +44,16 @@
 
         <Button
             android:id="@+id/btnPLogin"
+            android:background="@drawable/btnshape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
             android:text="로그인">
         </Button>
 
         <Button
             android:id="@+id/btnPJoin"
+            android:background="@drawable/btnshape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="회원가입">

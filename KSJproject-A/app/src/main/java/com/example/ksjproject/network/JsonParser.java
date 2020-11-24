@@ -1,5 +1,6 @@
 package com.example.ksjproject.network;
-import com.example.ksjproject.PersonInfo;
+import com.example.ksjproject.Person.PListinfo;
+import com.example.ksjproject.Person.PersonInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +65,46 @@ public class JsonParser {
         }
         return jsonArray.length();
     }
+
+    static public int getPlistJson(String response, ArrayList<PListinfo> PList) throws JSONException{
+        String strTitle;
+        String strContent;
+        String strJob;
+        String strArea;
+
+        JSONObject rootJSON = new JSONObject(response);
+        JSONArray jsonArray = new JSONArray(rootJSON.getString("datas"));
+
+        for(int i=0; i<jsonArray.length();i++){
+            JSONObject jsonObj = (JSONObject)jsonArray.get(i);
+
+            if(jsonObj.getString("TITLE").toString().equals("null"))
+                strTitle="-";
+            else
+                strTitle=jsonObj.getString("TITLE").toString();
+
+            if(jsonObj.getString("CONTENT").toString().equals("null"))
+                strContent="-";
+            else
+                strContent=jsonObj.getString("CONTENT").toString();
+
+            if(jsonObj.getString("JOB").toString().equals("null"))
+                strJob="-";
+            else
+                strJob=jsonObj.getString("JOB").toString();
+
+            if(jsonObj.getString("AREA").toString().equals("null"))
+                strArea="-";
+            else
+                strArea=jsonObj.getString("AREA").toString();
+
+
+            PList.add(new PListinfo(strTitle, strContent, strJob, strArea));
+        }
+
+        return jsonArray.length();
+    }
+
     static public int getResultJson(String response) throws JSONException{
         JSONArray jsonArray = new JSONArray(response);
         JSONObject jsonObject = new JSONObject(jsonArray.getString(0));

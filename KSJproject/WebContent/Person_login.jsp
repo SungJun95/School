@@ -9,8 +9,8 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	
-	String id = request.getParameter("id") == null ? "" : request.getParameter("id").trim();
-	String password = request.getParameter("password") == null ? "" : request.getParameter("password").trim();
+	String id = request.getParameter("id") == null ? "ksj" : request.getParameter("id").trim();
+	String password = request.getParameter("password") == null ? "1234" : request.getParameter("password").trim();
 	
 	System.out.println("id: " + id);
 	System.out.println("password: " + password);

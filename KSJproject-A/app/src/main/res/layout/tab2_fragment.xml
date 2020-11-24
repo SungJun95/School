@@ -46,6 +46,8 @@
             android:id="@+id/btnCLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btnshape"
+            android:layout_marginRight="30dp"
             android:text="로그인">
         </Button>
 
@@ -53,6 +55,7 @@
             android:id="@+id/btnCJoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btnshape"
             android:text="회원가입">
         </Button>
     </LinearLayout>

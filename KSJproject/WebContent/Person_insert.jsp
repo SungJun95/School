@@ -9,7 +9,7 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	
-	String id = request.getParameter("id") == null ? "test3" : request.getParameter("id").trim();
+	String id = request.getParameter("id") == null ? "ksj" : request.getParameter("id").trim();
 	String password = request.getParameter("password") == null ? "1234" : request.getParameter("password").trim();
 	String name = request.getParameter("name") == null ? "testtest3" : request.getParameter("name").trim();
 	String birth = request.getParameter("birth") == null ? "123456" : request.getParameter("birth").trim();
@@ -29,23 +29,34 @@
 	
 	int res=0;
 	
-	try
+	if(QueryBean.PersonIdDupCheck(id))// ID중복체크
 	{
-		res = QueryBean.insertPerson(id, password, name, birth, sex, email, tel);
+		try
+		{
+			res = QueryBean.insertPerson(id, password, name, birth, sex, email, tel);
+		}
+		catch(Exception e)
+		{
+			out.print(e.toString());
+		}
+		finally
+		{
+			QueryBean.closeConnection();
+		}
+		out.print("[");
+		out.print("{");
+		out.print("\"RESULT_OK\": \"" + res + "\" ");
+		out.print("}");
+		out.print("]");
+	} else {
+		res = 2;
+		
+		out.print("[");
+		out.print("{");
+		out.print("\"RESULT_OK\": \"" + res + "\" ");
+		out.print("}");
+		out.print("]");
 	}
-	catch(Exception e)
-	{
-		out.print(e.toString());
-	}
-	finally
-	{
-		QueryBean.closeConnection();
-	}
-	out.print("[");
-	out.print("{");
-	out.print("\"RESULT_OK\": \"" + res + "\" ");
-	out.print("}");
-	out.print("]");
-	
+
 	System.out.println("res :" + res);
 %>

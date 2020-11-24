@@ -1,11 +1,13 @@
 package com.example.ksjproject.network;
 
-
-
 import android.os.AsyncTask;
-import com.example.ksjproject.Person.TabFragment1;
+import android.util.Log;
+
+import com.example.ksjproject.Person.PListinfo;
+import com.example.ksjproject.Adapter.PlistAdapter;
 
 import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,15 +16,17 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
-public class NetworkPersonLogin extends AsyncTask<String, Void, String> {
+public class NetworkGetPlist extends AsyncTask<String, Void, String> {
     private URL Url;
-    private String URL_Address = "http://10.100.103.35/KSJproject/Person_login.jsp";
-    private TabFragment1 tabFragment1;
+    private String URL_Address = "http://10.100.103.35/KSJproject/Plist_Refresh.jsp";
+    private PlistAdapter adapter;
 
-    public NetworkPersonLogin(TabFragment1 tabFragment1) {
-        this.tabFragment1 = tabFragment1;
+    public NetworkGetPlist(PlistAdapter adapter){
+        this.adapter = adapter;
     }
+
 
 
     @Override
@@ -33,8 +37,9 @@ public class NetworkPersonLogin extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String res = "";
-        try {
+        try{
             Url = new URL(URL_Address);
+            // URL주소로 jsp에 접근
             HttpURLConnection conn = (HttpURLConnection) Url.openConnection();
 
             conn.setDefaultUseCaches(false);
@@ -46,18 +51,17 @@ public class NetworkPersonLogin extends AsyncTask<String, Void, String> {
 
             StringBuffer buffer = new StringBuffer();
             buffer.append("id").append("=").append(strings[0]);
-            buffer.append("&password").append("=").append(strings[1]);
 
             OutputStreamWriter outStream = new OutputStreamWriter(conn.getOutputStream(),"UTF-8");
             PrintWriter writer = new PrintWriter(outStream);
             writer.write(buffer.toString());
             writer.flush();
 
-            StringBuilder builder = new StringBuilder();
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+            StringBuilder builder= new StringBuilder();
+            BufferedReader in = new BufferedReader((new InputStreamReader(conn.getInputStream(),"UTF-8")));
             String line;
             while ((line = in.readLine()) != null){
-                builder.append(line +"\n");
+                builder.append(line + "\n");
             }
 
             res = builder.toString();
@@ -66,22 +70,26 @@ public class NetworkPersonLogin extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.i("Get Result",res);
         return res;
     }
 
     @Override
     protected void onPostExecute(String s){
         super.onPostExecute(s);
-        int res = 0;
-        try {
-            res = JsonParser.getResultJson(s);
+
+        ArrayList<PListinfo> Plist = new ArrayList<PListinfo>();
+        int count = 0;
+        try{
+            count = JsonParser.getPlistJson(s, Plist);
         }catch (JSONException e){
             e.printStackTrace();
         }
-        if(res == 0){
-            tabFragment1.LoginFail();
-        } else{
-            tabFragment1.LoginSucess();
+        if(count ==0){
+        }else{
+            adapter.setDatas(Plist);
+            adapter.notifyDataSetInvalidated();
         }
     }
+
 }

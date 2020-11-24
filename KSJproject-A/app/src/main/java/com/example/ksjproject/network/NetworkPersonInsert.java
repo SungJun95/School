@@ -1,6 +1,12 @@
 package com.example.ksjproject.network;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.example.ksjproject.MainActivity;
+
 import org.json.JSONException;
 
 import java.io.BufferedReader;
@@ -15,6 +21,12 @@ import java.net.URL;
 public class NetworkPersonInsert extends AsyncTask<String, Void, String> {
     private URL Url;
     private String URL_Address = "http://10.100.103.35/KSJproject/Person_insert.jsp";
+    private Activity act;
+
+
+    public NetworkPersonInsert(Activity act){
+        this.act = act;
+    }
 
     @Override
     protected void onPreExecute(){
@@ -74,8 +86,14 @@ public class NetworkPersonInsert extends AsyncTask<String, Void, String> {
         }catch (JSONException e){
             e.printStackTrace();
         }
-        if(res == 0){
-        }else {
+        if(res == 0){   // 회원가입 실패
+            Toast.makeText(act,"회원가입 실패", Toast.LENGTH_SHORT).show();
+        }else if (res == 1) { // 회원가입 성공
+            Toast.makeText(act,"회원가입 성공", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(act, MainActivity.class);
+            act.startActivity(intent);
+        }else if (res == 2) { // ID중복
+            Toast.makeText(act,"아이디 중복", Toast.LENGTH_SHORT).show();
         }
     }
 }

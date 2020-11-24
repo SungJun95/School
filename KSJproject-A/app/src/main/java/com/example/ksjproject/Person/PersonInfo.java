@@ -1,8 +1,10 @@
-package com.example.ksjproject;
+package com.example.ksjproject.Person;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ksjproject.R;
 
 public class PersonInfo extends AppCompatActivity {
     String id,password,name,birth,sex,email,tel;
