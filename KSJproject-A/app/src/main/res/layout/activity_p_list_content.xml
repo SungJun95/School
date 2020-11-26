@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Person.PListContent"
+    android:background="@drawable/jobinfo_background">
+
+    <TextView
+        android:id="@+id/PContentTitle"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/kotra"
+        android:text="TTIITTLLEE"
+        android:textColor="#000000"
+        android:textSize="20dp"></TextView>
+
+    <LinearLayout
+        android:layout_below="@+id/PContentTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jobinfo_background"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_marginRight="30dp"
+            android:textSize="12dp"
+            android:textColor="#5a5a5a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C_NAME">
+        </TextView>
+
+        <TextView
+            android:layout_marginRight="30dp"
+            android:textSize="12dp"
+            android:textColor="#5a5a5a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C_EMAIL">
+        </TextView>
+
+        <TextView
+            android:layout_marginRight="30dp"
+            android:textSize="12dp"
+            android:textColor="#5a5a5a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C_TEL">
+        </TextView>
+
+    </LinearLayout>
+
+    <TextView
+        android:padding="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:text="Content Content Content Content Content
+         Content Content Content Content Content
+          Content Content Content Content Content
+           Content Content Content Content Content">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jobinfo_background"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/PContentIV"
+            android:layout_marginLeft="10dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/heart1">
+        </ImageView>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="찜하기">
+        </TextView>
+
+        <Button
+            android:layout_marginLeft="168dp"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:text="지원하기"
+            android:gravity="center">
+        </Button>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

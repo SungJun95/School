@@ -260,5 +260,59 @@ CREATE TABLE Person (
     P_TEL VARCHAR(20)
 );
 
+SELECT * FROM person;
+
+SELECT COUNT(*) FROM person WHERE P_ID = 'ksj' and P_PWD = '1234';
+SELECT COUNT(*) FROM person WHERE P_ID = 'ksj';
+
+DELETE FROM person WHERE P_ID = "";    
+
+CREATE TABLE Plistinfo (
+    TITLE VARCHAR(20),
+    CONTENT VARCHAR(1000),
+    JOB VARCHAR(20),
+    AREA VARCHAR(20)
+);
+
+
+alter table plistinfo drop C_NAME;
+
+INSERT INTO plistinfo (TITLE, CONTENT, JOB, AREA)
+VALUES ('TestTitleTestTitle' , 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever', 'TestJob' , 'TestArea');
+INSERT INTO plistinfo (TITLE, CONTENT, JOB, AREA)
+VALUES ('TestTitleTestTitle2' , 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever', 'TestJob2' , 'TestArea2');
+INSERT INTO plistinfo (TITLE, CONTENT, JOB, AREA)
+VALUES ('We Want You!' , 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever', 'Soldier' , 'USA');
+
+alter table plistinfo modify CONTENT varchar(1000);
+
+SELECT * FROM plistinfo;
+
+SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO ORDER BY TITLE DESC;
+
+
+SELECT COUNT(*)
+FROM notice
+WHERE id LIKE '%1%';
+-- WHERE content LIKE '%1%';
+-- WHERE subject LIKE '%1%';
+
+SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO WHERE TITLE LIKE '%3%';
+
+
+ALTER TABLE PLISTINFO ADD number INT AUTO_INCREMENT PRIMARY KEY;
+
+ALTER TABLE PLISTINFO ADD C_NAME VARCHAR(20);
+ALTER TABLE PLISTINFO ADD C_EMAIL VARCHAR(20);
+ALTER TABLE PLISTINFO ADD C_TEL VARCHAR(20);
+
+UPDATE USER_INFO_SAMPLE 
+SET U_NAME = 'test', 
+U_PHONE = '123-4567-7890', 
+U_GRADE = 4
+WHERE U_id = 'test';
+
+UPDATE PLISTINFO SET C_NAME = 'USA' , C_EMAIL = 'usa@email.com' , C_TEL = '051-444-4444' WHERE JOB = 'Soldier';
+
 
 

@@ -161,7 +161,27 @@ public class QueryBean {
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO ORDER BY TITLE DESC ");
+		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO ORDER BY number ASC ");
+		
+		rs = stmt.executeQuery(sb.toString());
+		
+		ArrayList res = new ArrayList();
+		while(rs.next())
+		{
+			res.add(rs.getString(1));
+			res.add(rs.getString(2));
+			res.add(rs.getString(3));
+			res.add(rs.getString(4));
+		}
+		System.out.println(sb.toString());
+		return res;
+	}		// getUserInfo()
+	
+	public ArrayList getPlistInfo(String title) throws Exception
+	{
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO WHERE TITLE LIKE '%" + title + "%' ORDER BY number ASC ");
 		
 		rs = stmt.executeQuery(sb.toString());
 		

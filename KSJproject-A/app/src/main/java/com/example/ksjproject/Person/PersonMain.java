@@ -1,20 +1,45 @@
 package com.example.ksjproject.Person;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ksjproject.Adapter.PlistAdapter;
+import com.example.ksjproject.MainActivity;
 import com.example.ksjproject.R;
 import com.example.ksjproject.network.NetworkGetPlist;
+import com.example.ksjproject.network.NetworkPersonSearch;
 
 import java.util.ArrayList;
 
 public class PersonMain extends AppCompatActivity {
 
+    //슬라이드 열기/닫기 플래그
+    boolean isPageOpen = false;
+    //슬라이드 열기 애니메이션
+    Animation translateLeftAnim;
+    //슬라이드 닫기 애니메이션
+    Animation translateRightAnim;
+    //슬라이드 레이아웃
+    LinearLayout PSlideLayout;
+    // 버튼역할 이미지뷰
+    ImageView PImageView;
+
+    Button PSearchBtn;
+    EditText PSearchEdt;
 
     ListView Plistview;
 
@@ -27,25 +52,131 @@ public class PersonMain extends AppCompatActivity {
         setContentView(R.layout.personmainpage);
         setTheme(android.R.style.Theme);
 
-
         Plistview = findViewById(R.id.Plistview);
         Padapter = new PlistAdapter(PersonMain.this, R.layout.adapter_jobinfo, new ArrayList<PListinfo>());
         Plistview.setAdapter(Padapter);
 
-
-
-
-
-
         Plistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // 누른 아이템 content page로 이동 구현@@
+                Intent intent = new Intent(getApplicationContext(), PListContent.class);
+                startActivity(intent);
             }
         });
 
 
 
+        //UI
+        PSlideLayout = (LinearLayout)findViewById(R.id.PSlideLayout);
+        PImageView = (ImageView) findViewById(R.id.PImageView);
+
+        //애니메이션
+        translateLeftAnim = AnimationUtils.loadAnimation(this, R.anim.translate_left);
+        translateRightAnim = AnimationUtils.loadAnimation(this, R.anim.translate_right);
+
+        //애니메이션 리스너 설정
+        SlidingPageAnimationListener animationListener = new SlidingPageAnimationListener();
+        translateLeftAnim.setAnimationListener(animationListener);
+        translateRightAnim.setAnimationListener(animationListener);
+
+
         new NetworkGetPlist((PlistAdapter) Plistview.getAdapter()).execute("");
-    }
+
+        PSearchBtn = (Button) findViewById(R.id.PSearchBtn);
+        PSearchEdt = (EditText) findViewById(R.id.PSearchEdt);
+        PSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String SearchTitle = PSearchEdt.getText().toString();
+                new NetworkPersonSearch((PlistAdapter) Plistview.getAdapter()).execute(SearchTitle);
+            }
+        });
+
+    }                   // onCreate
+
+    //버튼
+    public void onImageViewClicked(View v){
+        //닫기
+        if(isPageOpen){
+            //애니메이션 시작
+            PSlideLayout.startAnimation(translateRightAnim);
+        }
+        //열기
+        else{
+            PSlideLayout.setVisibility(View.VISIBLE);
+            PSlideLayout.startAnimation(translateLeftAnim);
+        }
+    }       // onImageViewClicked
+
+    //애니메이션 리스너
+    private class SlidingPageAnimationListener implements Animation.AnimationListener {
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            //슬라이드 열기->닫기
+            if(isPageOpen){
+                PSlideLayout.setVisibility(View.INVISIBLE);
+                isPageOpen = false;
+            }
+            //슬라이드 닫기->열기
+            else{
+                isPageOpen = true;
+            }
+        }
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+    }       // SlidingPageAnimationListener
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        final  View v = getLayoutInflater().inflate(R.layout.logoutdialog,null);
+        new AlertDialog.Builder(PersonMain.this)
+                .setView(v)
+                .setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // 아니오
+                        dialogInterface.cancel();
+                    }
+                })
+                .setPositiveButton("네", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        // 네
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }           // onBackPressed
+
+    public void PmainLogout(View view){
+        final  View v = getLayoutInflater().inflate(R.layout.logoutdialog,null);
+        new AlertDialog.Builder(PersonMain.this)
+                .setView(v)
+                .setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // 아니오
+                        dialogInterface.cancel();
+                    }
+                })
+                .setPositiveButton("네", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        // 네
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }        // PmainLogout
 }

@@ -1,13 +1,15 @@
-package com.example.ksjproject;
+package com.example.ksjproject.Company;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.ksjproject.Company.CompanyJoin;
+import com.example.ksjproject.R;
 
 public class TabFragment2 extends Fragment
 {

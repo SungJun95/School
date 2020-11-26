@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.ksjproject.Person.TabFragment1;
-import com.example.ksjproject.TabFragment2;
+import com.example.ksjproject.Company.TabFragment2;
 
 public class PagerAdapter extends FragmentStatePagerAdapter
 {

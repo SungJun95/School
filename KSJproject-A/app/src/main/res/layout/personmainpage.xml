@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +14,7 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/PSearchEdt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,9 +31,11 @@
         </Button>
 
         <ImageView
+            android:id="@+id/PImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon">
+            android:src="@drawable/icon"
+            android:onClick="onImageViewClicked">
         </ImageView>
 
 
@@ -41,7 +45,87 @@
         android:id="@+id/Plistview"
         android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp">
     </ListView>
 
-</LinearLayout>
+    <!-- 슬라이드 레이아웃 -->
+    <LinearLayout
+        android:id="@+id/PSlideLayout"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="right"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/jobinfo_background">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jobinfo_background">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="구성준님 오늘도 좋은하루 되세요~">
+            </TextView>
+        </LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            android:background="@drawable/btnshape"
+            android:layout_marginTop="25dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="이력서 관리">
+        </Button>
+
+        <Button
+            android:layout_gravity="center"
+            android:background="@drawable/btnshape"
+            android:layout_marginTop="25dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="찜한 기업">
+        </Button>
+
+        <Button
+            android:layout_gravity="center"
+            android:background="@drawable/btnshape"
+            android:layout_marginTop="25dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="프로필 수정">
+        </Button>
+
+        <Button
+            android:onClick="PmainLogout"
+            android:layout_gravity="center"
+            android:background="@drawable/btnshape"
+            android:layout_marginTop="25dp"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="로그 아웃">
+        </Button>
+
+        <Button
+            android:background="@drawable/btnshape"
+            android:layout_marginTop="100dp"
+            android:id="@+id/btnSlideClose"
+            android:layout_gravity="bottom|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닫기"
+            android:onClick="onImageViewClicked">
+        </Button>
+
+    </LinearLayout>
+
+</FrameLayout>

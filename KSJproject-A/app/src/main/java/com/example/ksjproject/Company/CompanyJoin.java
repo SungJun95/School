@@ -1,4 +1,4 @@
-package com.example.ksjproject;
+package com.example.ksjproject.Company;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ksjproject.R;
 
 public class CompanyJoin extends AppCompatActivity
 {
