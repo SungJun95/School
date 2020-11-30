@@ -17,7 +17,7 @@ import java.net.URL;
 
 public class NetworkPersonLogin extends AsyncTask<String, Void, String> {
     private URL Url;
-    private String URL_Address = "http://10.100.103.35/KSJproject/Person_login.jsp";
+    private String URL_Address = "http://192.168.35.185/KSJproject/Person_login.jsp";
     private TabFragment1 tabFragment1;
 
     public NetworkPersonLogin(TabFragment1 tabFragment1) {

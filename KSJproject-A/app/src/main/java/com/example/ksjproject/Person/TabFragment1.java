@@ -18,7 +18,7 @@ public class TabFragment1 extends Fragment
 {
 
     Button btnLogin, btnPJoin;
-
+    EditText edtPID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState)
@@ -49,6 +49,8 @@ public class TabFragment1 extends Fragment
                 startActivity(PersonJoinIntent);
             }
         });
+
+
 
         return view;
     }

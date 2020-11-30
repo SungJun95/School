@@ -1,7 +1,10 @@
 package com.example.ksjproject.Person;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Network;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +16,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ksjproject.Adapter.ClistAdapter;
 import com.example.ksjproject.Adapter.PlistAdapter;
 import com.example.ksjproject.MainActivity;
 import com.example.ksjproject.R;
+import com.example.ksjproject.network.NetworkGetContent;
 import com.example.ksjproject.network.NetworkGetPlist;
 import com.example.ksjproject.network.NetworkPersonSearch;
 
@@ -38,7 +44,7 @@ public class PersonMain extends AppCompatActivity {
     // 버튼역할 이미지뷰
     ImageView PImageView;
 
-    Button PSearchBtn;
+    Button PSearchBtn,PprofileUpdate;
     EditText PSearchEdt;
 
     ListView Plistview;
@@ -47,23 +53,13 @@ public class PersonMain extends AppCompatActivity {
 
     PlistAdapter Padapter;
 
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personmainpage);
         setTheme(android.R.style.Theme);
-
-        Plistview = findViewById(R.id.Plistview);
-        Padapter = new PlistAdapter(PersonMain.this, R.layout.adapter_jobinfo, new ArrayList<PListinfo>());
-        Plistview.setAdapter(Padapter);
-
-        Plistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), PListContent.class);
-                startActivity(intent);
-            }
-        });
-
 
 
         //UI
@@ -79,8 +75,26 @@ public class PersonMain extends AppCompatActivity {
         translateLeftAnim.setAnimationListener(animationListener);
         translateRightAnim.setAnimationListener(animationListener);
 
+        Plistview = findViewById(R.id.Plistview);
+        Padapter = new PlistAdapter(PersonMain.this, R.layout.adapter_jobinfo, new ArrayList<PListinfo>());
+        Plistview.setAdapter(Padapter);
+
 
         new NetworkGetPlist((PlistAdapter) Plistview.getAdapter()).execute("");
+//        new NetworkGetPlist((PlistAdapter) Plistview.getAdapter()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "");
+
+        Plistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {   
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String strId = String.valueOf(id);
+
+                Intent intent = new Intent(getApplicationContext(), PListContent.class);
+                intent.putExtra("number" , strId);
+                startActivity(intent);
+            }
+        });
+
 
         PSearchBtn = (Button) findViewById(R.id.PSearchBtn);
         PSearchEdt = (EditText) findViewById(R.id.PSearchEdt);
@@ -88,9 +102,22 @@ public class PersonMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String SearchTitle = PSearchEdt.getText().toString();
+
                 new NetworkPersonSearch((PlistAdapter) Plistview.getAdapter()).execute(SearchTitle);
             }
         });
+
+        PprofileUpdate = (Button) findViewById(R.id.PprofileUpdate);
+        PprofileUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "TEST", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), PersonUpdate.class);
+                startActivity(intent);
+            }
+        });
+
 
     }                   // onCreate
 

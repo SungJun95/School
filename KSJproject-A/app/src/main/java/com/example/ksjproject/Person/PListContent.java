@@ -2,45 +2,46 @@ package com.example.ksjproject.Person;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.ksjproject.Adapter.ClistAdapter;
+import com.example.ksjproject.Adapter.PlistAdapter;
 import com.example.ksjproject.R;
+import com.example.ksjproject.network.NetworkGetContent;
+import com.example.ksjproject.network.NetworkGetPlist;
+
+import java.util.ArrayList;
 
 public class PListContent extends AppCompatActivity {
 
-    ImageView PContentIV;
-    Boolean IVboolean;
+    ListView Clistview;
+    ClistAdapter Cadapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_p_list_content);
+        //setContentView(R.layout.activity_p_list_content);
+        setContentView(R.layout.p_list_content);
+        setTheme(android.R.style.Theme);
 
 
-        int [] nDrawable = {R.drawable.heart1, R.drawable.heart2};
+        Intent intent = getIntent();
+        String number = intent.getStringExtra("number");
+        Log.v("mango" , "PlistContent.java intent number : " + number);
 
-        IVboolean = false;
-        PContentIV = (ImageView) findViewById(R.id.PContentIV);
-        PContentIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(IVboolean){
-                    PContentIV.setImageResource(nDrawable[0]);
-                    IVboolean=false;
-                    Toast.makeText(getApplicationContext(), "찜하기해제!" , Toast.LENGTH_SHORT).show();
-                    // DB에 찜하기 구현! 여유되면
-                } else {
-                    PContentIV.setImageResource(nDrawable[1]);
-                    IVboolean=true;
-                    Toast.makeText(getApplicationContext(), "찜했습니다!" , Toast.LENGTH_SHORT).show();
 
-                }
-            }
-        });
+        Clistview = findViewById(R.id.PcontentView);
+        Cadapter = new ClistAdapter(PListContent.this, R.layout.activity_p_list_content, new ArrayList<CListinfo>());
+        Clistview.setAdapter(Cadapter);
 
+        new NetworkGetContent((ClistAdapter) Clistview.getAdapter()).execute(number);
     }
 }

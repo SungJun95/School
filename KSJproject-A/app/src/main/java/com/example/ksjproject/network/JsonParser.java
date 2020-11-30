@@ -1,4 +1,6 @@
 package com.example.ksjproject.network;
+
+import com.example.ksjproject.Person.CListinfo;
 import com.example.ksjproject.Person.PListinfo;
 import com.example.ksjproject.Person.PersonInfo;
 
@@ -103,7 +105,73 @@ public class JsonParser {
         }
 
         return jsonArray.length();
-    }
+    }       // getPlistJson
+
+
+    static public int getClistJson(String response , ArrayList<CListinfo> Clist) throws JSONException {
+        String strTitle;
+        String strContent;
+        String strJob;
+        String strArea;
+        String strC_NAME;
+        String strC_EMAIL;
+        String strC_TEL;
+        String strNumber;
+
+        JSONObject rootJSON = new JSONObject(response);
+        JSONArray jsonArray = new JSONArray(rootJSON.getString("datas"));
+
+        String[] PString = new String[8];
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObj = (JSONObject) jsonArray.get(i);
+
+            if (jsonObj.getString("TITLE").toString().equals("null"))
+                strTitle = "-";
+            else
+                strTitle = jsonObj.getString("TITLE").toString();
+
+            if (jsonObj.getString("CONTENT").toString().equals("null"))
+                strContent = "-";
+            else
+                strContent = jsonObj.getString("CONTENT").toString();
+
+            if (jsonObj.getString("JOB").toString().equals("null"))
+                strJob = "-";
+            else
+                strJob = jsonObj.getString("JOB").toString();
+
+            if (jsonObj.getString("AREA").toString().equals("null"))
+                strArea = "-";
+            else
+                strArea = jsonObj.getString("AREA").toString();
+
+            if (jsonObj.getString("C_NAME").toString().equals("null"))
+                strC_NAME = "-";
+            else
+                strC_NAME = jsonObj.getString("C_NAME").toString();
+
+            if (jsonObj.getString("C_EMAIL").toString().equals("null"))
+                strC_EMAIL = "-";
+            else
+                strC_EMAIL = jsonObj.getString("C_EMAIL").toString();
+
+            if (jsonObj.getString("C_TEL").toString().equals("null"))
+                strC_TEL = "-";
+            else
+                strC_TEL = jsonObj.getString("C_TEL").toString();
+
+            if (jsonObj.getString("number").toString().equals("null"))
+                strNumber = "-";
+            else
+                strNumber = jsonObj.getString("number").toString();
+
+
+            Clist.add(new CListinfo(strTitle, strContent, strJob, strArea, strC_NAME, strC_EMAIL, strC_TEL, strNumber));
+        }
+
+        return jsonArray.length();
+    }       // getClistJson
+
 
     static public int getResultJson(String response) throws JSONException{
         JSONArray jsonArray = new JSONArray(response);

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class NetworkPersonSearch extends AsyncTask<String, Void, String> {
     private URL Url;
-    private String URL_Address = "http://10.100.103.35/KSJproject/Person_Search.jsp";
+    private String URL_Address = "http://192.168.35.185/KSJproject/Person_Search.jsp";
     private PlistAdapter adapter;
 
     public NetworkPersonSearch(PlistAdapter adapter){
@@ -64,7 +64,7 @@ public class NetworkPersonSearch extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.i("Get Result",res);
+        Log.v("mango",res);
         return res;
     }
 
@@ -80,6 +80,7 @@ public class NetworkPersonSearch extends AsyncTask<String, Void, String> {
             e.printStackTrace();
         }
         if(count ==0){
+
         }else{
             adapter.setDatas(userList);
             adapter.notifyDataSetInvalidated();

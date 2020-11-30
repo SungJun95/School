@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,6 +31,7 @@
         android:layout_marginBottom="20dp">
 
         <TextView
+            android:id="@+id/PContentName"
             android:layout_marginRight="30dp"
             android:textSize="12dp"
             android:textColor="#5a5a5a"
@@ -37,6 +41,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/PContentEmail"
             android:layout_marginRight="30dp"
             android:textSize="12dp"
             android:textColor="#5a5a5a"
@@ -46,6 +51,7 @@
         </TextView>
 
         <TextView
+            android:id="@+id/PContentTel"
             android:layout_marginRight="30dp"
             android:textSize="12dp"
             android:textColor="#5a5a5a"
@@ -57,6 +63,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/PContentC"
         android:padding="10dp"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
@@ -102,6 +109,4 @@
 
 
     </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

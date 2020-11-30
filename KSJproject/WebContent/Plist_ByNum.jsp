@@ -10,9 +10,9 @@
    
    request.setCharacterEncoding("UTF-8");
    
-   String title = request.getParameter("title") == null ? "2" : request.getParameter("title").trim();
+   String number = request.getParameter("number") == null ? "1" : request.getParameter("number").trim();
    
-   System.out.println("title : " + title);
+   System.out.println("number : " + number);
    
    QueryBean.getConnection();
    
@@ -20,7 +20,7 @@
    
    try
    {
-      resArr = QueryBean.getPlistInfoByTitle(title);
+      resArr = QueryBean.getPlistInfoByNumber(number);
    }
    catch(SQLException e)
    {
@@ -45,17 +45,25 @@
 		out.print("\"TITLE\": \""				+ (String)resArr.get(0) + "\", ");
 		out.print("\"CONTENT\": \""				+ (String)resArr.get(1) + "\", ");
 		out.print("\"JOB\": \""				+ (String)resArr.get(2) + "\", ");
-		out.print("\"AREA\": \""				+ (String)resArr.get(3) + "\" ");
+		out.print("\"AREA\": \""				+ (String)resArr.get(3) + "\", ");
+		out.print("\"C_NAME\": \""				+ (String)resArr.get(4) + "\", ");
+		out.print("\"C_EMAIL\": \""				+ (String)resArr.get(5) + "\", ");
+		out.print("\"C_TEL\": \""				+ (String)resArr.get(6) + "\", ");
+		out.print("\"NUMBER\": \""				+ (String)resArr.get(7) + "\" ");
 		out.print("} ");
 		
-		for(int i = 4; i < resArr.size(); i+=4)
+		for(int i = 8; i < resArr.size(); i+=8)
 		{
 			out.print(",");
 			out.print("{ ");
-			out.print("		\"TITLE\": \""						+ (String)resArr.get(i) + "\", ");
-			out.print("		\"CONTENT\": \""				+ (String)resArr.get(i+1) + "\", ");
-			out.print("		\"JOB\": \""				+ (String)resArr.get(i+2) + "\", ");
-			out.print("		\"AREA\": \""				+ (String)resArr.get(i+3) + "\" ");
+			out.print("\"TITLE\": \""				+ (String)resArr.get(i) + "\", ");
+			out.print("\"CONTENT\": \""				+ (String)resArr.get(i+1) + "\", ");
+			out.print("\"JOB\": \""				+ (String)resArr.get(i+2) + "\", ");
+			out.print("\"AREA\": \""				+ (String)resArr.get(i+3) + "\", ");
+			out.print("\"C_NAME\": \""				+ (String)resArr.get(i+4) + "\", ");
+			out.print("\"C_EMAIL\": \""				+ (String)resArr.get(i+5) + "\", ");
+			out.print("\"C_TEL\": \""				+ (String)resArr.get(i+6) + "\", ");
+			out.print("\"NUMBER\": \""				+ (String)resArr.get(i+7) + "\" ");
 			out.print("} ");
 		}
 		out.print("] ");

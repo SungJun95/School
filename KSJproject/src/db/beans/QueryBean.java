@@ -161,7 +161,7 @@ public class QueryBean {
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO ORDER BY number ASC ");
+		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO ORDER BY number DESC ");
 		
 		rs = stmt.executeQuery(sb.toString());
 		
@@ -177,11 +177,11 @@ public class QueryBean {
 		return res;
 	}		// getUserInfo()
 	
-	public ArrayList getPlistInfo(String title) throws Exception
+	public ArrayList getPlistInfoByTitle(String title) throws Exception
 	{
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO WHERE TITLE LIKE '%" + title + "%' ORDER BY number ASC ");
+		sb.append(" SELECT TITLE, CONTENT, JOB, AREA FROM PLISTINFO WHERE TITLE LIKE '%" + title + "%' ORDER BY number DESC ");
 		
 		rs = stmt.executeQuery(sb.toString());
 		
@@ -195,7 +195,32 @@ public class QueryBean {
 		}
 		System.out.println(sb.toString());
 		return res;
-	}		// getUserInfo()
+	}		// getPlistInfoByTitle()
+	
+	
+	public ArrayList getPlistInfoByNumber(String number) throws Exception
+	{
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append(" SELECT TITLE, CONTENT, JOB, AREA, C_NAME, C_EMAIL, C_TEL, NUMBER FROM PLISTINFO WHERE NUMBER = " + number +" ");
+		
+		rs = stmt.executeQuery(sb.toString());
+		
+		ArrayList res = new ArrayList();
+		while(rs.next())
+		{
+			res.add(rs.getString(1));
+			res.add(rs.getString(2));
+			res.add(rs.getString(3));
+			res.add(rs.getString(4));
+			res.add(rs.getString(5));
+			res.add(rs.getString(6));
+			res.add(rs.getString(7));
+			res.add(rs.getString(8));
+		}
+		System.out.println(sb.toString());
+		return res;
+	}		// getPlistInfoByNumber()
 	
 	
 //	public static void main(String[] args) {

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.example.ksjproject.Person.PListinfo;
 import com.example.ksjproject.Person.PersonMain;
 import com.example.ksjproject.R;
-
 import java.util.ArrayList;
 
 public class PlistAdapter extends BaseAdapter
@@ -28,7 +27,7 @@ public class PlistAdapter extends BaseAdapter
         Act = personMain;
         ListLayout = adapter_jobinfo;
         PListArr = pListinfos;
-        Inflater = (LayoutInflater) personMain.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Inflater = (LayoutInflater) Act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     public void setDatas(ArrayList<PListinfo> arrayList){
@@ -47,7 +46,14 @@ public class PlistAdapter extends BaseAdapter
 
     @Override
     public long getItemId(int position) {
-        return position;
+        int maxnum = PListArr.size(); // 가정
+        int[] nums = new int[7];
+        int temp = maxnum;
+        for(int i=0; i < maxnum; i++){
+            nums[i] = temp;
+            temp = temp - 1;
+        }
+        return nums[position];
     }
 
     @Override
